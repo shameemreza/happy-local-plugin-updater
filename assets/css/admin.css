@@ -1,0 +1,980 @@
+/**
+ * Local Plugin Updater Admin Styles
+ */
+
+/* Import dashicons to ensure they're available for checkboxes */
+@import url("../../../wp-includes/css/dashicons.min.css");
+
+/* Admin Layout */
+.wrap {
+  background: #f8f8f8;
+  padding: 20px;
+  border-radius: 4px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+  margin-top: 20px;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.lpu-admin-content {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 20px 0;
+  gap: 20px;
+}
+
+.lpu-admin-main {
+  flex: 1 1 65%;
+  min-width: 300px;
+  max-width: 100%;
+}
+
+.lpu-admin-sidebar {
+  flex: 1 1 30%;
+  min-width: 250px;
+  max-width: 100%;
+}
+
+/* Cards */
+.lpu-card {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  margin-bottom: 20px;
+  overflow: hidden;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.lpu-card h2 {
+  border-bottom: 1px solid #eee;
+  margin: 0;
+  padding: 15px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.lpu-card-content {
+  padding: 15px;
+  overflow: auto;
+}
+
+/* Updates Table */
+.lpu-updates-table {
+  margin-top: 15px;
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.lpu-updates-table th,
+.lpu-updates-table td {
+  padding: 12px;
+  text-align: left;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.lpu-update-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.lpu-last-checked {
+  display: inline-block;
+  font-size: 13px;
+  color: #606060;
+  margin-left: 10px;
+}
+
+.lpu-no-updates {
+  padding: 10px 0;
+  color: #606060;
+  font-style: italic;
+}
+
+/* Settings Form */
+.lpu-card .form-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.lpu-card .form-table th {
+  padding: 20px 15px 20px 0;
+  width: 30%;
+  font-weight: 600;
+  vertical-align: top;
+  color: #23282d;
+  font-size: 14px;
+}
+
+.lpu-card .form-table td {
+  padding: 20px 15px;
+  vertical-align: top;
+  position: relative;
+}
+
+.lpu-card .form-table input[type="text"],
+.lpu-card .form-table textarea {
+  width: 100%;
+  max-width: 400px;
+  box-sizing: border-box;
+}
+
+.lpu-card .form-table select {
+  width: 100%;
+  max-width: 200px;
+}
+
+.lpu-card .form-table .description {
+  margin-top: 5px;
+  color: #777;
+  word-wrap: break-word;
+  display: block;
+}
+
+/* New checkbox layout */
+.lpu-toggle-switch {
+  position: absolute;
+  display: inline-block;
+  right: 10px; /* Move toggle switch away from edge */
+  top: 5px;
+  transform: none;
+  margin: 0;
+  width: 46px;
+  height: 24px;
+  z-index: 1;
+}
+
+.lpu-toggle-switch input[type="checkbox"] {
+  position: absolute !important;
+  width: 46px !important;
+  height: 24px !important;
+  min-width: 46px !important;
+  min-height: 24px !important;
+  margin: 0 !important;
+  outline: none !important;
+  cursor: pointer !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+  background-color: #ccc !important;
+  border-radius: 34px !important;
+  transition: 0.4s !important;
+  border: none !important;
+  padding: 0 !important;
+}
+
+.lpu-toggle-switch input[type="checkbox"]:before {
+  content: "" !important;
+  position: absolute !important;
+  height: 18px !important;
+  width: 18px !important;
+  left: 3px !important;
+  top: 3px !important;
+  background-color: white !important;
+  border-radius: 50% !important;
+  transition: 0.4s !important;
+  transform: none !important;
+}
+
+.lpu-toggle-switch input[type="checkbox"]:checked {
+  background-color: #0073aa !important;
+  border-color: #0073aa !important;
+}
+
+.lpu-toggle-switch input[type="checkbox"]:checked:before {
+  transform: translateX(22px) !important;
+  content: "" !important;
+  font-family: inherit !important;
+  top: 3px !important;
+}
+
+.lpu-toggle-switch input[type="checkbox"]:focus {
+  box-shadow: 0 0 1px #0073aa !important;
+}
+
+.lpu-toggle-switch input[type="checkbox"]:hover {
+  box-shadow: 0 0 2px #0073aa !important;
+}
+
+.lpu-option-label {
+  font-weight: 600;
+  display: block;
+  margin-bottom: 5px;
+  color: #23282d;
+}
+
+.lpu-option-description {
+  color: #666;
+  font-size: 13px;
+  line-height: 1.5;
+  max-width: 85%;
+  display: block;
+  margin-top: 4px;
+}
+
+.lpu-card .form-table tr {
+  height: auto;
+  min-height: 55px;
+  position: relative;
+}
+
+.lpu-card .form-table td {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+/* Repository structure example */
+pre {
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  background: #f8f8f8;
+  padding: 10px;
+  border-left: 4px solid #0073aa;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  font-size: 13px;
+  line-height: 1.4;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Plugin Page Styles */
+.plugins-php .lpu-update-link {
+  color: #0073aa;
+  cursor: pointer;
+}
+
+.plugins-php .lpu-update-link:hover {
+  color: #00a0d2;
+}
+
+/* Status Messages */
+.lpu-notice {
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 3px;
+}
+
+.lpu-notice-success {
+  background: #ecf7ed;
+  border-left: 4px solid #46b450;
+}
+
+.lpu-notice-error {
+  background: #fbeaea;
+  border-left: 4px solid #dc3232;
+}
+
+.lpu-notice-warning {
+  background: #fff8e5;
+  border-left: 4px solid #ffb900;
+}
+
+.lpu-notice-info {
+  background: #e5f5fa;
+  border-left: 4px solid #00a0d2;
+}
+
+/* Spinner */
+.lpu-spinner {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  border-top: 2px solid #0073aa;
+  border-radius: 50%;
+  vertical-align: middle;
+  margin-right: 5px;
+  opacity: 0.7;
+  animation: lpu-spin 1s linear infinite;
+}
+
+@keyframes lpu-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* How to Use Section */
+.lpu-card ol {
+  margin-left: 20px;
+  padding-left: 0;
+}
+
+.lpu-card ol li {
+  margin-bottom: 10px;
+  word-wrap: break-word;
+}
+
+.lpu-card p {
+  word-wrap: break-word;
+}
+
+/* Fix Settings API Form */
+#lpu_settings_section {
+  margin: 0;
+  padding: 0;
+}
+
+.lpu-card-content h2.title {
+  padding: 0;
+  margin-top: 0;
+  margin-bottom: 15px;
+  border-bottom: none;
+}
+
+/* Fix for auto-check toggle and frequency display */
+.lpu-frequency-row.hidden,
+.lpu-auto-update-row.hidden {
+  display: none;
+}
+
+/* Submit button styling */
+p.submit {
+  margin-top: 15px;
+  padding: 0;
+  clear: both;
+}
+
+.lpu-card .submit .button-primary {
+  background: #0073aa;
+  border-color: #0073aa;
+  color: white;
+  transition: all 0.3s ease;
+  padding: 5px 15px;
+  height: auto;
+  line-height: 1.6;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+}
+
+.lpu-card .submit .button-primary:hover,
+.lpu-card .submit .button-primary:focus {
+  background: #005f8b;
+  border-color: #005f8b;
+  color: white;
+  transform: translateY(-1px);
+  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.12);
+}
+
+/* Modern checkbox styling */
+.lpu-card .form-table input[type="checkbox"] {
+  position: relative;
+  width: 18px;
+  height: 18px;
+  min-width: 18px;
+  min-height: 18px;
+  margin-right: 15px;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  border-radius: 3px;
+  outline: none !important;
+  vertical-align: top;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: 2px solid #c3c4c7;
+  background-color: #fff;
+  box-shadow: none;
+  transition: all 0.15s ease-in-out;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  padding: 0;
+}
+
+.lpu-card .form-table input[type="checkbox"]:checked {
+  background-color: #0073aa;
+  border-color: #0073aa;
+  box-shadow: 0 0 0 1px #0073aa;
+}
+
+.lpu-card .form-table input[type="checkbox"]:checked::before {
+  content: "\f147";
+  font-family: dashicons;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 16px;
+  line-height: 1;
+  color: #fff;
+  margin: 0;
+  padding: 0;
+  display: block;
+  width: 16px;
+  height: 16px;
+  text-align: center;
+}
+
+.lpu-card .form-table input[type="checkbox"]:hover {
+  border-color: #0073aa;
+}
+
+.lpu-card .form-table input[type="checkbox"]:focus {
+  outline: none;
+  border-color: #0073aa;
+  box-shadow: 0 0 0 1px #0073aa;
+}
+
+.lpu-card .form-table label {
+  display: flex;
+  align-items: flex-start;
+  cursor: pointer;
+  margin-bottom: 0;
+}
+
+.lpu-card .form-table label span {
+  vertical-align: top;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  display: inline-block;
+  margin-top: 1px;
+}
+
+.lpu-checkbox-description {
+  margin-left: 5px;
+  position: relative;
+  display: inline-block;
+}
+
+/* Auto Check/Update Feature Styles */
+#lpu_auto_check:checked + .lpu-checkbox-description,
+#lpu_auto_update:checked + .lpu-checkbox-description,
+#lpu_debug_mode:checked + .lpu-checkbox-description {
+  font-weight: 500;
+  color: #0073aa;
+}
+
+/* Repository path input styling */
+.lpu-repo-path-wrapper {
+  margin-top: 10px;
+  position: relative;
+  max-width: 500px;
+}
+
+#lpu_repo_path {
+  width: 100%;
+  font-family: monospace;
+  transition: all 0.3s ease, height 0.1s ease;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 8px 12px;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05);
+  min-height: 60px;
+  resize: vertical;
+  overflow-y: hidden;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+#lpu_repo_path:hover,
+#lpu_repo_path:focus {
+  background-color: #f7f7f7;
+  border-color: #0073aa;
+  box-shadow: 0 0 0 1px #0073aa, inset 0 1px 2px rgba(0, 0, 0, 0.05);
+  outline: none;
+}
+
+/* Path actions */
+.lpu-path-actions {
+  margin-top: 5px;
+  display: flex;
+  gap: 10px;
+}
+
+#lpu-copy-path {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+#lpu-copy-path .dashicons {
+  font-size: 16px;
+  height: 16px;
+  width: 16px;
+}
+
+/* Path tooltip */
+.lpu-path-tooltip {
+  position: absolute;
+  background: #23282d;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 3px;
+  font-size: 12px;
+  z-index: 100;
+  max-width: 90%;
+  word-break: break-all;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  display: none;
+}
+
+.lpu-warning {
+  color: #b32d2e;
+  font-style: italic;
+  margin-left: 10px;
+}
+
+.notice.notice-error {
+  border-left-color: #b32d2e;
+  padding: 12px;
+  margin: 5px 0 15px;
+}
+
+.notice.notice-error p {
+  margin: 0.5em 0;
+  padding: 0;
+}
+
+/* Responsive */
+@media screen and (max-width: 960px) {
+  .lpu-admin-main,
+  .lpu-admin-sidebar {
+    flex: 1 1 100%;
+  }
+
+  .lpu-card .form-table td {
+    padding: 15px 10px;
+    max-width: 100%;
+  }
+
+  .lpu-option-wrapper {
+    padding-right: 55px;
+  }
+
+  .lpu-update-actions {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .lpu-last-checked {
+    margin-left: 0;
+    margin-top: 10px;
+  }
+}
+
+@media screen and (max-width: 782px) {
+  .wrap {
+    padding: 15px 10px;
+  }
+
+  .lpu-card-content {
+    padding: 10px;
+  }
+
+  pre {
+    font-size: 12px;
+    padding: 8px;
+  }
+
+  .lpu-card .form-table input[type="text"],
+  .lpu-card .form-table select {
+    max-width: 100%;
+  }
+
+  .lpu-repo-path-wrapper {
+    max-width: 100%;
+  }
+
+  #lpu_repo_path {
+    font-size: 16px; /* Prevent zoom on mobile */
+  }
+}
+
+/* Checkbox label styling */
+.lpu-checkbox-label {
+  display: flex !important;
+  align-items: flex-start !important;
+  cursor: pointer;
+  padding: 4px 0;
+  margin-bottom: 8px;
+  position: relative;
+  line-height: normal;
+  min-height: 24px;
+}
+
+.lpu-checkbox-label input[type="checkbox"] {
+  margin-right: 15px;
+  margin-top: 2px !important;
+  float: none !important;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.lpu-checkbox-label span {
+  padding-top: 0 !important;
+  line-height: 1.4;
+  vertical-align: middle !important;
+  display: inline-block;
+  margin-top: 1px;
+}
+
+/* Fix for form-table overrides */
+.lpu-card .form-table th {
+  display: none !important; /* Hide the left column titles */
+  width: 0 !important;
+  padding: 0 !important;
+}
+
+.lpu-card .form-table td {
+  padding: 15px !important;
+  vertical-align: top !important;
+  width: 100% !important;
+  display: block !important;
+  box-sizing: border-box !important;
+}
+
+/* Add animation for dependent settings - accordion style */
+.lpu-frequency-row,
+.lpu-auto-update-row {
+  max-height: 150px;
+  margin: 0;
+  padding: 15px 0 0;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+  opacity: 1;
+  transform: translateY(0);
+  will-change: max-height, opacity, transform;
+}
+
+.lpu-frequency-row.hidden,
+.lpu-auto-update-row.hidden {
+  max-height: 0;
+  padding: 0;
+  margin: 0;
+  opacity: 0;
+  transform: translateY(-10px);
+  display: block !important;
+  pointer-events: none;
+  position: absolute; /* Remove from normal flow when hidden */
+  visibility: hidden; /* Completely hide it from the layout */
+}
+
+/* Container for the auto check section to properly handle animations */
+.lpu-auto-check-container {
+  position: relative;
+  overflow: visible;
+  display: block;
+  margin-bottom: 20px; /* Add spacing after the entire container */
+}
+
+/* Keep consistent spacing between all options */
+.lpu-option-wrapper {
+  position: relative;
+  padding-right: 70px;
+  min-height: 24px;
+  margin: 0 0 25px; /* Consistent bottom margin for all options */
+  box-sizing: border-box;
+}
+
+/* Adjust bottom margin for auto check to eliminate extra space */
+.lpu-auto-check-container .lpu-option-wrapper {
+  margin-bottom: 0;
+}
+
+.lpu-option-wrapper h4 {
+  margin: 0 0 8px 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: #23282d;
+  padding: 0;
+}
+
+/* Add space between fields */
+.lpu-card .form-table tr + tr {
+  margin-top: 15px;
+}
+
+/* Make the repository path title stand out */
+.lpu-repo-path-wrapper {
+  margin-top: 12px;
+}
+
+.lpu-option-description {
+  color: #666;
+  font-size: 13px;
+  line-height: 1.5;
+  max-width: 85%;
+  display: block;
+  margin-top: 4px;
+}
+
+.lpu-select-wrapper {
+  margin-top: 10px;
+}
+
+/* Frequency select styling */
+#lpu_check_frequency {
+  padding: 6px 10px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.07);
+  background-color: #fff;
+  color: #32373c;
+  outline: none;
+  transition: 0.05s border-color ease-in-out;
+  min-width: 200px;
+}
+
+#lpu_check_frequency:focus {
+  border-color: #0073aa;
+  box-shadow: 0 0 0 1px #0073aa;
+}
+
+/* Make sure any rows that are hidden stay hidden */
+.lpu-frequency-row.hidden,
+.lpu-auto-update-row.hidden {
+  display: none !important;
+}
+
+/* Add animation for dependent settings */
+.lpu-frequency-row,
+.lpu-auto-update-row {
+  max-height: 300px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  overflow: hidden;
+  transition: all 0.5s ease;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.lpu-frequency-row.hidden,
+.lpu-auto-update-row.hidden {
+  max-height: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  opacity: 0;
+  transform: translateY(-10px);
+  display: block !important;
+  pointer-events: none;
+  position: absolute; /* Remove from normal flow when hidden */
+  visibility: hidden; /* Completely hide it from the layout */
+}
+
+/* Option wrapper for dependent fields spacing */
+.lpu-option-wrapper + .lpu-option-wrapper {
+  margin-top: 20px;
+}
+
+/* Adjust overall card padding */
+.lpu-card-content {
+  padding: 15px;
+  overflow: visible; /* Change from auto to prevent scrollbars */
+  box-sizing: border-box;
+}
+
+/* Custom styles for select dropdown to match the design */
+.lpu-select-wrapper select {
+  width: 100%;
+  max-width: 300px;
+  padding: 8px 12px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.07);
+  font-size: 14px;
+  color: #32373c;
+  box-sizing: border-box;
+  height: auto;
+  line-height: normal;
+}
+
+.lpu-select-wrapper select:focus {
+  border-color: #0073aa;
+  box-shadow: 0 0 0 1px #0073aa;
+  outline: none;
+}
+
+/* Fix textarea resize causing horizontal scrollbar */
+#lpu_repo_path {
+  max-width: 100%;
+  box-sizing: border-box;
+  resize: vertical;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 960px) {
+  .lpu-card .form-table td {
+    padding: 15px 10px !important;
+    max-width: 100%;
+  }
+
+  .lpu-option-wrapper {
+    padding-right: 60px;
+  }
+
+  .lpu-toggle-switch {
+    right: 5px;
+  }
+}
+
+/* Updates section styling */
+.lpu-section-header {
+  padding: 15px 20px;
+  border-bottom: 1px solid #e5e5e5;
+  background-color: #f8f8f8;
+}
+
+.lpu-section-header h2 {
+  margin: 0 0 5px;
+  padding: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #23282d;
+}
+
+.lpu-section-description {
+  margin: 0;
+  color: #606060;
+  font-size: 13px;
+}
+
+.lpu-section-content {
+  padding: 20px;
+}
+
+.lpu-update-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+#lpu-check-updates {
+  padding: 5px 15px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  height: auto;
+  line-height: 1.6;
+}
+
+#lpu-check-updates:hover {
+  background-color: #135e96;
+  border-color: #135e96;
+}
+
+#lpu-check-updates:disabled {
+  background-color: #a7aaad;
+  border-color: #a7aaad;
+  color: #fff;
+}
+
+.lpu-last-checked {
+  display: inline-block;
+  font-size: 13px;
+  color: #606060;
+  margin-left: 10px;
+  position: relative;
+}
+
+.lpu-update-results-wrapper {
+  min-height: 100px;
+  position: relative;
+}
+
+.lpu-no-updates-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 0;
+  background-color: #f8f8f8;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.lpu-no-updates-container .dashicons {
+  font-size: 36px;
+  width: 36px;
+  height: 36px;
+  color: #46b450;
+  margin-bottom: 10px;
+}
+
+.lpu-no-updates {
+  padding: 0;
+  margin: 0;
+  color: #606060;
+  font-style: italic;
+  font-size: 14px;
+}
+
+.lpu-updates-table {
+  margin-top: 0;
+  border-spacing: 0;
+  width: 100%;
+  clear: both;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.lpu-updates-table thead th {
+  background-color: #f8f8f8;
+  font-weight: 600;
+  text-align: left;
+  padding: 12px 15px;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.lpu-updates-table tbody td {
+  padding: 15px;
+  vertical-align: middle;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.lpu-updates-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.lpu-updates-table .plugin-name {
+  font-weight: 500;
+}
+
+.lpu-updates-table .current-version {
+  color: #606060;
+}
+
+.lpu-updates-table .new-version {
+  color: #0073aa;
+  font-weight: 500;
+}
+
+.lpu-updates-table .plugin-actions {
+  text-align: right;
+}
+
+/* Loading state */
+.lpu-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 0;
+  background-color: #f8f8f8;
+  border-radius: 4px;
+  text-align: center;
+  color: #606060;
+  font-size: 14px;
+}
+
+.lpu-loading .lpu-spinner {
+  margin-bottom: 10px;
+  width: 30px;
+  height: 30px;
+  border-width: 3px;
+}
