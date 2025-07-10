@@ -1,0 +1,40 @@
+# Operating System files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Editor and IDE files
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+*.swp
+*.swo
+
+# Dependency directories
+node_modules/
+vendor/
+
+# Build directories
+dist/
+build/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+debug.log
+
+# Environment files
+.env
+.env.*
+
+# WordPress content
+wp-content/
+
+# Misc
+*.zip
+*.tar.gz
+*.rar
+*.sql 
