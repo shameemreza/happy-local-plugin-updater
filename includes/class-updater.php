@@ -258,6 +258,14 @@ class LPU_Updater {
         $settings = get_option('lpu_settings', [
             'debug_mode' => false,
         ]);
+        
+        // Ensure settings is an array
+        if (!is_array($settings)) {
+            $settings = [
+                'debug_mode' => false,
+            ];
+        }
+        
         $debug_mode = isset($settings['debug_mode']) ? $settings['debug_mode'] : false;
         
         // Log file
@@ -524,6 +532,14 @@ class LPU_Updater {
         $settings = get_option('lpu_settings', [
             'debug_mode' => false,
         ]);
+        
+        // Ensure settings is an array
+        if (!is_array($settings)) {
+            $settings = [
+                'debug_mode' => false,
+            ];
+        }
+        
         $debug_mode = isset($settings['debug_mode']) ? $settings['debug_mode'] : false;
         
         // Log file
@@ -778,6 +794,14 @@ class LPU_Updater {
         $settings = get_option('lpu_settings', [
             'debug_mode' => false,
         ]);
+        
+        // Ensure settings is an array
+        if (!is_array($settings)) {
+            $settings = [
+                'debug_mode' => false,
+            ];
+        }
+        
         $debug_mode = isset($settings['debug_mode']) ? $settings['debug_mode'] : false;
         
         $log_file = dirname(dirname(__FILE__)) . '/debug.log';

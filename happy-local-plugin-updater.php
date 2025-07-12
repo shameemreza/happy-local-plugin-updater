@@ -64,13 +64,26 @@ class Local_Plugin_Updater {
      */
     private function __construct() {
         // Load plugin settings
-        $this->settings = get_option('lpu_settings', [
+        $settings = get_option('lpu_settings', [
             'repo_path' => LPU_DEFAULT_REPO_PATH,
             'auto_check' => false,
             'check_frequency' => 'daily',
             'auto_update' => false,
             'debug_mode' => false,
         ]);
+        
+        // Ensure settings is an array
+        if (!is_array($settings)) {
+            $settings = [
+                'repo_path' => LPU_DEFAULT_REPO_PATH,
+                'auto_check' => false,
+                'check_frequency' => 'daily',
+                'auto_update' => false,
+                'debug_mode' => false,
+            ];
+        }
+        
+        $this->settings = $settings;
         
         // Load dependencies
         $this->load_dependencies();

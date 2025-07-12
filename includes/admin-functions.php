@@ -67,6 +67,16 @@ function lpu_check_for_updates() {
         'debug_mode' => false,
     ]);
     
+    // Ensure settings is an array
+    if (!is_array($settings)) {
+        $settings = [
+            'repo_path' => LPU_DEFAULT_REPO_PATH,
+            'auto_check' => false,
+            'auto_update' => false,
+            'debug_mode' => false,
+        ];
+    }
+    
     // Get debug mode setting
     $debug_mode = isset($settings['debug_mode']) ? $settings['debug_mode'] : false;
     
@@ -185,6 +195,14 @@ function lpu_schedule_update_checks() {
         'auto_check' => false,
         'check_frequency' => 'daily',
     ]);
+    
+    // Ensure settings is an array
+    if (!is_array($settings)) {
+        $settings = [
+            'auto_check' => false,
+            'check_frequency' => 'daily',
+        ];
+    }
     
     // Skip if auto-check is disabled
     if (!$settings['auto_check']) {
